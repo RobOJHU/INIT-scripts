@@ -15,6 +15,11 @@
 #			the point of that is. If you know, email me!     
 #
 # processname: nrpe
+
+
+
+
+#  from MY server --RobO  /usr/local/nagios/bin/nrpe -c /usr/local/nagios/etc/nrpe.cfg -d
 # config: /usr/local/nagios/etc/nrpe.conf
 # pidfile: /var/run/nrpe.pid
 
