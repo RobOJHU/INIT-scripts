@@ -1,0 +1,24 @@
+
+
+##
+#    THESE are commands we just DONT want anyone but a SYSadmin to use
+##
+Cmnd_Alias DUMPS=/usr/sbin/dump, /usr/sbin/rdump, /usr/sbin/restore, /usr/sbin/rrestore, /usr/bin/mt , /usr/bin/mt
+Cmnd_Alias KILL=/usr/bin/kill
+Cmnd_Alias SUDO=/usr/sbin/visudo
+Cmnd_Alias PRINTING=/usr/sbin/lpc, /usr/bin/lprm
+Cmnd_Alias SHUTDOWN=/usr/sbin/shutdown
+Cmnd_Alias HALT=/usr/sbin/halt, /usr/sbin/fasthalt
+Cmnd_Alias REBOOT=/usr/sbin/reboot, /usr/sbin/fastboot
+Cmnd_Alias SHELLS=/usr/bin/sh, /usr/bin/csh, /usr/bin/ksh, /usr/local/bin/tcsh, /usr/bin/rsh, /usr/local/bin/zsh
+Cmnd_Alias SU= /bin/su
+Cmnd_Alias VIPW=/usr/sbin/vipw,/usr/bin/passwd, /usr/bin/chsh, /usr/bin/chfn
+Cmnd_Alias ADMIN_CMDS = /usr/bin/passwd, /usr/sbin/useradd, /usr/sbin/userdel, /usr/sbin/usermod, /usr/sbin/visudo
+Cmnd_Alias SOFTWARE = /bin/rpm, /usr/bin/up2date, /usr/bin/yum
+Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig
+Cmnd_Alias LOCATE = /usr/bin/updatedb
+Cmnd_Alias STORAGE = /sbin/fdisk, /sbin/sfdisk, /sbin/parted, /sbin/partprobe, /bin/mount, /bin/umount
+Cmnd_Alias DELEGATING = /usr/sbin/visudo, /bin/chown, /bin/chmod, /bin/chgrp
+Cmnd_Alias PROCESSES = /bin/nice, /bin/kill, /usr/bin/kill, /usr/bin/killall
+
+sudotester      ALL= /usr/bin/, /bin/ , /sbin/, !KILL , !SHUTDOWN, !REBOOT, !HALT , !SHELLS, !SU , !VIPW, !DUMPS, !SUDO
