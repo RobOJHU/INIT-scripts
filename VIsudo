@@ -1,5 +1,4 @@
 
-
 ##
 #    THESE are commands we just DONT want anyone but a SYSadmin to use
 ##
@@ -20,5 +19,10 @@ Cmnd_Alias LOCATE = /usr/bin/updatedb
 Cmnd_Alias STORAGE = /sbin/fdisk, /sbin/sfdisk, /sbin/parted, /sbin/partprobe, /bin/mount, /bin/umount
 Cmnd_Alias DELEGATING = /usr/sbin/visudo, /bin/chown, /bin/chmod, /bin/chgrp
 Cmnd_Alias PROCESSES = /bin/nice, /bin/kill, /usr/bin/kill, /usr/bin/killall
+Cmnd_Alias INIT_CMDS = /etc/rc.d/init.d/*
 
-sudotester      ALL= /usr/bin/, /bin/ , /sbin/, !KILL , !SHUTDOWN, !REBOOT, !HALT , !SHELLS, !SU , !VIPW, !DUMPS, !SUDO
+
+
+
+
+sudotester      ALL= /usr/bin/, /bin/ , /sbin/, !KILL , !SHUTDOWN, !REBOOT, !HALT , !SHELLS, !SU , !VIPW, !DUMPS, !SUDO , !INIT_CMDS, !ADMIN_CMDS
