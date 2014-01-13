@@ -1,4 +1,3 @@
-
 ##
 #    THESE are commands we just DONT want anyone but a SYSadmin to use
 ##
@@ -25,4 +24,4 @@ Cmnd_Alias INIT_CMDS = /etc/rc.d/init.d/*
 
 
 
-sudotester      ALL= /usr/bin/, /bin/ , /sbin/, !KILL , !SHUTDOWN, !REBOOT, !HALT , !SHELLS, !SU , !VIPW, !DUMPS, !SUDO , !INIT_CMDS, !ADMIN_CMDS
+sudotester      ALL= /usr/bin/, /bin/ , /sbin/, !KILL , !DELEGATING , !SHUTDOWN, !REBOOT, !HALT , !SHELLS, !SU , !VIPW, !DUMPS, !SUDO , !INIT_CMDS, !ADMIN_CMDS
