@@ -2,12 +2,12 @@
 #    THESE are commands we just DONT want anyone but a SYSadmin to use
 ##
 Cmnd_Alias DUMPS=/usr/sbin/dump, /usr/sbin/rdump, /usr/sbin/restore, /usr/sbin/rrestore, /usr/bin/mt , /usr/bin/mt
-Cmnd_Alias KILL=/usr/bin/kill
+Cmnd_Alias KILL=/usr/bin/kill, /bin/kill , /bin/killall
 Cmnd_Alias SUDO=/usr/sbin/visudo
 Cmnd_Alias PRINTING=/usr/sbin/lpc, /usr/bin/lprm
 Cmnd_Alias SHUTDOWN=/usr/sbin/shutdown , /sbin/shutdown
 Cmnd_Alias HALT=/usr/sbin/halt, /usr/sbin/fasthalt
-Cmnd_Alias REBOOT=/usr/sbin/reboot, /usr/sbin/fastboot
+Cmnd_Alias REBOOT=/usr/sbin/reboot, /usr/sbin/fastboot , /sbin/reboot , /sbin/fastboot
 Cmnd_Alias SHELLS=/usr/bin/sh, /usr/bin/csh, /usr/bin/ksh, /bin/ksh, /bin/bash, /bin/csh, /bin/sh, /usr/local/bin/tcsh, /usr/bin/rsh, /usr/local/bin/zsh
 Cmnd_Alias SU= /bin/su
 Cmnd_Alias VIPW=/usr/sbin/vipw,/usr/bin/passwd, /usr/bin/chsh, /usr/bin/chfn
