@@ -18,7 +18,7 @@ Cmnd_Alias LOCATE = /usr/bin/updatedb
 Cmnd_Alias STORAGE = /sbin/fdisk, /sbin/sfdisk, /sbin/parted, /sbin/partprobe, /bin/mount, /bin/umount
 Cmnd_Alias DELEGATING = /usr/sbin/visudo, /bin/chown, /bin/chmod, /bin/chgrp
 Cmnd_Alias PROCESSES = /bin/nice, /bin/kill, /usr/bin/kill, /usr/bin/killall
-Cmnd_Alias INIT_CMDS = /etc/rc.d/init.d/*
+Cmnd_Alias INIT_CMDS = /etc/rc.d/init.d/* , /sbin/init
 
 
 
