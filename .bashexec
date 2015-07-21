@@ -1,8 +1,8 @@
 #!/bin/bash
 tmpout=tmpout.txt
 message1="$(tail -n 1 /var/log/secure )"
-echo -e "The ROOT account has been accessed by user NAMED BELOW\n : $message1" > $tmpout
+echo -e "The ROOT account has been accessed by user NAMED BELOW\n :::: $message1" > $tmpout
 
-/bin/mail -s "$(hostname) ROOT account accesssed on $(hostname)" rosteen@jhu.edu < $tmpout
-/bin/mail -s "$(hostname) ROOT account accesssed on $(hostname)" tstroup@jhu.edu < $tmpout
+/bin/mail -s " ROOT account accesssed on $(hostname)" rosteen@jhu.edu < $tmpout
+/bin/mail -s "ROOT account accesssed on $(hostname)" tstroup@jhu.edu < $tmpout
 rm -f $tmpout
