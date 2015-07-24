@@ -5,4 +5,6 @@ echo -e "An account on $(hostname) has been accessed by the user NAMED BELOW\n :
 
 /bin/mail -s "$(hostname) has been accessed" rosteen@jhu.edu < $tmpout
 /bin/mail -s "$(hostname) has been accessed" tstroup@jhu.edu < $tmpout
+/bin/mail -s "$(hostname) has been accessed" ashar@jhu.edu < $tmpout
+/bin/mail -s "$(hostname) has been accessed" sergey@jhu.edu < $tmpout
 rm -f $tmpout
