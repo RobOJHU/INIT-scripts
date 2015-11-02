@@ -1,96 +1,82 @@
 #!/bin/bash
-# Author: James Chase
-# Contact: james@chasecomputers.net
 #
-# nrpe        Startup script for NRPE
+# chkconfig: 2345 20 80
+# nrpe daemon
+# description: The NRPE daemon communicates with the nagios daemon \
+#              transmitting vital system & hardware information about \
+#              different services.
 #
-# chkconfig: 35 99 1
-# description: 	A simple script to autostart NRPE and allow us to easily reboot
-#		it. 
+# Author: Nick Winn
 #
-# Additional Info:	This will work on most Red Had style linux distributions#			(I tested on CentOS 4/5). I know that it is funky in 
-#			SuSe. You may have to modify the 'nrpe=' and 'pidfile='
-#			and 'lockfile=' lines to just point to the directory
-#			without the '${SOMETHING-'. I'm not even sure what
-#			the point of that is. If you know, email me!     
-#
-# processname: nrpe
-
-
-
-
-#  from MY server --RobO  /usr/local/nagios/bin/nrpe -c /usr/local/nagios/etc/nrpe.cfg -d
-# config: /usr/local/nagios/etc/nrpe.conf
-# pidfile: /var/run/nrpe.pid
+# $Revision: 1.2 $
 
 # Source function library.
-. /etc/rc.d/init.d/functions
+. /etc/init.d/functions
 
+# Get config.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ "${NETWORKING}" = "no" ] && exit 0
+[ -f /usr/local/nagios/etc/nrpe.cfg ] || exit 0
+
+
+# SOME --- additions from the OTHER nrpe init script --RobO
+# NOTICE the ps is started WITHOUT the -n FLAG
 # Paths to the nrpe script, lockfile location, options to start nrpe with, etc.
-nrpe=${NRPE-/usr/local/nagios/bin/nrpe}
-prog=nrpe
-pidfile=${PIDFILE-/var/run/nrpe.pid}
-lockfile=${LOCKFILE-/var/lock/subsys/nrpe}
+NRPE="/usr/local/nagios/bin/nrpe"
+PIDFILE="/var/run/nrpe.pid"
+CFG="/usr/local/nagios/etc/nrpe.cfg"
+# Umm, start the program!
 RETVAL=0
-OPTIONS='-c /usr/local/nagios/etc/nrpe.cfg -n -d'
 
-# Umm, start the program! 
 start() {
-        echo -n $"Starting $prog: "
-        $nrpe $OPTIONS
-        RETVAL=$?
-        [ $RETVAL = 0 ] && touch ${lockfile} && success || failure 
-	echo
-	return $RETVAL
+    echo -n $"Starting NRPE: "
+    "${NRPE}" -c $CFG -d > /dev/null
+    RETVAL=$?
+    echo "OK"
 }
 
-# Stop the program? I don't think killall works on all linux distributions.
-# It's probably not even the best way to do it on CentOS! If you have issues
-# just change the 'killall' to 'kill $pid' or 'kill -9 $pid' 
 stop() {
-	echo -n $"Stopping $prog: "
-	killall $nrpe 
-	RETVAL=$?
-	[ $RETVAL = 0 ] && rm -f ${lockfile} ${pidfile} && success || failure
-	echo
+    if [ -f "${PIDFILE}" ]; then
+        echo -n $"Stopping NRPE: "
+        killall ${NRPE} > /dev/null
+        echo "OK"
+    fi
 }
 
-reload() {
-    echo $"Reloading $prog: "
-        stop
-	start
-        RETVAL=$?
+restart() {
+    stop
+    start
 }
 
 # See how we were called.
 case "$1" in
   start)
-	start
-	;;
+        start
+        ;;
   stop)
-	stop
-	;;
+        stop
+        ;;
   status)
-        status $nrpe
-	RETVAL=$?
-	;;
-  restart)
-	stop
-	start
-	;;
-  condrestart)
-	if [ -f ${pidfile} ] ; then
-		stop
-		start
-	fi
-	;;
+        status NRPE
+        RETVAL=$?
+        ;;
   reload)
-        reload
-	RETVAL=$?
-	;;
+        restart
+        ;;
+  restart)
+        restart
+        ;;
+  condrestart)
+        if [ -f "${PIDFILE}" ]; then
+            restart
+        fi
+        ;;
   *)
-	echo $"Usage: $prog {start|stop|restart|condrestart|reload|status|help}"
-	exit 1
+        echo $"Usage: $0 {start|stop|status|restart|condrestart}"
+        exit 1
+        ;;
 esac
 
 exit $RETVAL
